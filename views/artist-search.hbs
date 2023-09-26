@@ -4,10 +4,11 @@
     {{#each items}}
 
     <li>
-        
-        <img src="{{this.images.0.url}}" alt="{{this.name}}">
-
-
+        {{#if this.images}}
+            <img src="{{this.images.0.url}}" alt="{{this.name}}">
+        {{else}}
+            <p>No Image Found</p>
+        {{/if}}
         <div class="input-bg">
             <h3>{{this.name}}</h3>
             <a href="/albums/{{this.id}}">View Albums</a>

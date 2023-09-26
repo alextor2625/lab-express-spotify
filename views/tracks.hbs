@@ -9,11 +9,19 @@
 {{#each tracks}}
     <li class="input-tracks-li"> 
         {{!-- <img src="{{this.images.0.url}}" alt="{{this.name}}"> --}}
-
-        <div class="input-tracks">
+         <div class="input-tracks">
             <h3>{{this.name}}</h3>
             {{!-- <a href="/tracks/{{this.id}}">View Tracks</a> --}}
         </div>
+
+        
+        
+        {{#if preview_url}}
+            <audio src={{preview_url}} controls></audio>
+        {{else}}
+            <p>No Preview Track</p>
+        {{/if}}
+       
     </li>
     {{/each}}
 
