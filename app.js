@@ -32,7 +32,7 @@ app.listen(3000, () => console.log('My Spotify project running on port 3000 🎧
 
 app.get('/', (req, res, next) =>{
     res.render('home');
-})
+});
 
 app.get('/artist-search', (req, res, next) => {
     const searchTerm = req.query.artist;
@@ -48,6 +48,45 @@ app.get('/artist-search', (req, res, next) => {
         res.render('artist-search', {items});
     })
     .catch(err => console.log('The error while searching artists occurred: ', err));
+});
+
+app.get('/albums/:artistId', (req, res, next) => {
+
+const artistId = req.params.artistId
+console.log('artist ID:', artistId)
+
+    spotifyApi
+        .getArtistAlbums(artistId)
+        .then( data => {
+
+            const albums = data.body.items
+            
+            console.log( 'Data ==>' ,albums);
+            res.render('albums', {albums})
+        })
+
+        .catch( err => {
+            console.log('Error Caught =>>>\n',err);
+        })
+
+
+});
+
+
+app.get('/tracks/:trackID', (req, res, next) => {
+    const trackID = req.params.trackID
+    spotifyApi
+        .getAlbumTracks(trackID)
+        .then( data => {
+            console.log( 'Track Data ==>' , data.body.items);
+            const tracks = data.body.items
+            
+            res.render('tracks', {tracks})
+        })
+
+        .catch( err => {
+            console.log('Error Caught =>>>\n',err);
+        })
 })
 
 // CID 289045882f73413db9373adb8ec1bb0d

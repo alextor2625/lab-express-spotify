@@ -1,18 +1,15 @@
-<h2>Results - Artist Seach</h2>
+<h1>Albums</h1>
+
 
 <ul>
-    {{#each items}}
-
-    <li>
-        
+{{#each albums}}
+    <li> 
         <img src="{{this.images.0.url}}" alt="{{this.name}}">
-
 
         <div class="input-bg">
             <h3>{{this.name}}</h3>
-            <a href="/albums/{{this.id}}">View Albums</a>
+            <a href="/tracks/{{this.id}}">View Tracks</a>
         </div>
-        
     </li>
     {{/each}}
 
